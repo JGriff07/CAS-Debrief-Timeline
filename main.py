@@ -6,6 +6,11 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+st.title("CAS TIMELINE GENERATOR")
+st.subheader("This data is UNCLASS")
+
+st.header("Input 9-Lines Here")
+
 df = pd.DataFrame(
     [
         {"Label": "Alpha", "From": "XR99", "To": "Hog", "Nominated": "12:00:00"},
