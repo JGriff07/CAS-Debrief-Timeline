@@ -6,8 +6,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-blank_array = np.array([[1,2,3], [4,5,6], [7,8,9]], columns=['a', 'b', 'c'])
-blank_dataframe = pd.DataFrame(blank_array)
+blank_array = np.array([[1,2,3], [4,5,6], [7,8,9]])
+blank_dataframe = pd.DataFrame(blank_array, columns=['a', 'b', 'c'])
 
 st.dataframe(data=blank_dataframe)
 
