@@ -6,8 +6,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.title("CAS TIMELINE GENERATOR")
-st.subheader("This data is UNCLASS")
+st.title("CAS TIMELINE GENERATOR", anchor='center')
+st.subheader("This data is :green[UNCLASS]", anchor='center')
 
 st.header("Input 9-Lines Here")
 
