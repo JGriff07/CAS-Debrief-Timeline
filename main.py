@@ -6,8 +6,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-blank_array = np.array([[1,2,3], [4,5,6], [7,8,9]])
-blank_dataframe = pd.DataFrame(blank_array, columns=['a', 'b', 'c'])
+df = pd.DataFrame(
+    [
+        {"Label": "Alpha", "From": "XR99", "To": "Hog", "Nominated": 12:00:00},
+        {"Label": "Bravo", "From": "XR99", "To": "Hog", "Nominated": 12:00:00},
+        {"Label": "Charlie", "From": "XR99", "To": "Hog", "Nominated": 12:00:00}
+    ]
+)
 
-st.dataframe(data=blank_dataframe)
+edited_df = st.data_editor(dr, num_rows="dynamic")
 
