@@ -25,9 +25,9 @@ st.header("Input :blue[Blue Timeline] Here (9-Lines)")
 
 blue_df = pd.DataFrame(
     [
-        {"Label": "Alpha", "From": "XR99", "To": "Hog", "Nominated": "12:00:00"},
-        {"Label": "Bravo", "From": "XR99", "To": "Hog", "Nominated": "12:00:00"},
-        {"Label": "Charlie", "From": "XR99", "To": "Hog", "Nominated": "12:00:00"}
+        {"Label": "Alpha", "From": "XR99", "To": "Hog", "Nominated": "12:00:00", "Passed": "12:00:00", "First Effect": "12:00:00", "Last Effect": "12:00:00"},
+        {"Label": "Bravo", "From": "XR99", "To": "Hog", "Nominated": "12:00:00", "Passed": "12:00:00", "First Effect": "12:00:00", "Last Effect": "12:00:00"},
+        {"Label": "Charlie", "From": "XR99", "To": "Hog", "Nominated": "12:00:00", "Passed": "12:00:00", "First Effect": "12:00:00", "Last Effect": "12:00:00"}
     ]
 )
 
