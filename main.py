@@ -6,10 +6,12 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.title("CAS TIMELINE GENERATOR", anchor='center')
-st.subheader("This data is :green[UNCLASS]", anchor='center')
+st.title("CAS TIMELINE GENERATOR")
+st.subheader("This data is :green[UNCLASS]")
 
-st.header("Input 9-Lines Here")
+
+#The first input DataFrame
+st.header("Input :blue[9-Lines] Here")
 
 df = pd.DataFrame(
     [
@@ -21,3 +23,13 @@ df = pd.DataFrame(
 
 edited_df = st.data_editor(df, num_rows="dynamic")
 
+#The second input DataFrame
+st.header("Input :red[IDF] Here")
+
+red_df = pd.DataFrame(
+    [
+        {"Label": "1st IDF", "Start": "12:00:00", "End": "12:00:00"}
+    ]
+)
+
+edited_red_df = st.data_editor(red_df, num_rows="dynamic")
