@@ -9,11 +9,21 @@ import numpy as np
 st.title("CAS TIMELINE GENERATOR")
 st.subheader("This data is :green[UNCLASS]")
 
+#The first input DataFrame for Vul Start and KIO Times
+st.header("Input the Vul Start and KIO Times")
 
-#The first input DataFrame
-st.header("Input :blue[9-Lines] Here")
+start_df = pd.DataFrame(
+    [
+        {"Vul Start":"12:00:00", "Knock It Off": "12:00:00"}
+    ]
+)
 
-df = pd.DataFrame(
+edited_start_df = st.data_editor(start_df)
+
+#The second input DataFrame for Blue Timeline
+st.header("Input :blue[Blue Timeline] Here (9-Lines)")
+
+blue_df = pd.DataFrame(
     [
         {"Label": "Alpha", "From": "XR99", "To": "Hog", "Nominated": "12:00:00"},
         {"Label": "Bravo", "From": "XR99", "To": "Hog", "Nominated": "12:00:00"},
@@ -21,10 +31,10 @@ df = pd.DataFrame(
     ]
 )
 
-edited_df = st.data_editor(df, num_rows="dynamic")
+edited_blue_df = st.data_editor(blue_df, num_rows="dynamic")
 
-#The second input DataFrame
-st.header("Input :red[IDF] Here")
+#The third input DataFrame for Red Timeline
+st.header("Input :red[Red Timeline] Here (IDF)")
 
 red_df = pd.DataFrame(
     [
