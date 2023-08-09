@@ -5,7 +5,12 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import process_blue as pb
+import process_red as pr
+import matplotlib.pyplot as plt
+from PIL import Image
 
+#Title the Streamlit Page
 st.title("CAS TIMELINE GENERATOR")
 st.subheader("This data is :green[UNCLASS]")
 
@@ -32,6 +37,11 @@ blue_df = pd.DataFrame(
 )
 
 edited_blue_df = st.data_editor(blue_df, num_rows="dynamic")
+#Process blue_df to create Aircraft Timeline label, start_time, and end_time
+processed_blue_df = pb.process_blue_timeline(edited_blue_df, edited_start_df)
+
+#Process blue_df to create JTAC Timeline label, start_time, and end_time
+processed_jtac_df = pb.process_jtac_timeline(edited_blue_df, edited_start_df)
 
 #The third input DataFrame for Red Timeline
 st.header("Input :red[Red Timeline] Here (IDF)")
@@ -43,3 +53,42 @@ red_df = pd.DataFrame(
 )
 
 edited_red_df = st.data_editor(red_df, num_rows="dynamic")
+
+#Process the red_df to label, start_time, and end_time
+processed_red_df = pr.process_red_timeline(edited_red_df, edited_start_df)
+
+if st.button(label='Generate Timeline', help='Must use "12:00:00" format.'):
+    #Do all The MATPLOTLIB HERE
+    # plot the graph
+    fig, (ax0, ax1, ax2) = plt.subplots(ncols=1, nrows=3, sharex=True, figsize=(10, 8))
+    ax0.invert_yaxis()
+    ax1.invert_yaxis()
+    ax2.invert_yaxis()
+
+    ax0.barh(y=processed_blue_df['Asset'],
+             left=processed_blue_df['rel_start'],
+             width=processed_blue_df['rel_length'],
+             color=processed_blue_df['Color'],
+             edgecolor='black',
+             hatch=processed_blue_df['Hatch'])
+
+    ax1.barh(y=processed_jtac_df['Label'],
+             left=processed_jtac_df['rel_start'],
+             width=processed_jtac_df['rel_length'],
+             color=processed_jtac_df['Color'],
+             edgecolor='black',
+             hatch=processed_jtac_df['Hatch'])
+
+    ax2.barh(y='Red IDF',
+             left=processed_red_df['rel_start'],
+             width=processed_red_df['rel_length'],
+             color=processed_red_df['Color'],
+             edgecolor='black')
+
+    fig.suptitle('Timeline', fontsize=30, fontweight='bold')
+    #Save the Image-Timeline
+    plt.savefig('Timeline.png')
+    #Open the image to pass to Streamlit
+    image = Image.open('Timeline.png')
+    #Show the Image-Timeline
+    st.image(image)
