@@ -30,9 +30,9 @@ st.header("Input :blue[Blue Timeline] Here (9-Lines)")
 
 blue_df = pd.DataFrame(
     [
-        {"Label": "Alpha", "From": "XR99", "To": "Hog", "Nominated": "12:01:00", "Passed": "12:03:00", "First Effect": "12:05:00", "Last Effect": "12:10:00"},
-        {"Label": "Bravo", "From": "XR99", "To": "Hog", "Nominated": "12:11:00", "Passed": "12:13:00", "First Effect": "12:15:00", "Last Effect": "12:20:00"},
-        {"Label": "Charlie", "From": "XR99", "To": "Hog", "Nominated": "12:21:00", "Passed": "12:23:00", "First Effect": "12:25:00", "Last Effect": "12:30:00"}
+        {"Label": "Alpha", "From": "XR99", "To": "Hog", "Nominated": "12:01:00", "Passed": "12:03:00", "Tally":"12:04:00", "First Effect": "12:05:00", "Last Effect": "12:10:00"},
+        {"Label": "Bravo", "From": "XR99", "To": "Hog", "Nominated": "12:11:00", "Passed": "12:13:00", "Tally":"12:14:00", "First Effect": "12:15:00", "Last Effect": "12:20:00"},
+        {"Label": "Charlie", "From": "XR99", "To": "Hog", "Nominated": "12:21:00", "Passed": "12:23:00", "Tally": "12:24:00", "First Effect": "12:25:00", "Last Effect": "12:30:00"}
     ]
 )
 
@@ -70,14 +70,16 @@ if st.button(label='Generate Timeline', help='Must use "12:00:00" format.'):
              width=processed_blue_df['rel_length'],
              color=processed_blue_df['Color'],
              edgecolor='black',
-             hatch=processed_blue_df['Hatch'])
+             hatch=processed_blue_df['Hatch'],
+             height=processed_blue_df['Height'])
 
     ax1.barh(y=processed_jtac_df['Label'],
              left=processed_jtac_df['rel_start'],
              width=processed_jtac_df['rel_length'],
              color=processed_jtac_df['Color'],
              edgecolor='black',
-             hatch=processed_jtac_df['Hatch'])
+             hatch=processed_jtac_df['Hatch'],
+             height=processed_jtac_df['Height'])
 
     ax2.barh(y='Red IDF',
              left=processed_red_df['rel_start'],
