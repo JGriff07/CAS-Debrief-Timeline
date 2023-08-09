@@ -71,7 +71,8 @@ if st.button(label='Generate Timeline', help='Must use "12:00:00" format.'):
              color=processed_blue_df['Color'],
              edgecolor='black',
              hatch=processed_blue_df['Hatch'],
-             height=processed_blue_df['Height'])
+             height=processed_blue_df['Height']
+            )
 
     ax1.barh(y=processed_jtac_df['Label'],
              left=processed_jtac_df['rel_start'],
@@ -79,13 +80,15 @@ if st.button(label='Generate Timeline', help='Must use "12:00:00" format.'):
              color=processed_jtac_df['Color'],
              edgecolor='black',
              hatch=processed_jtac_df['Hatch'],
-             height=processed_jtac_df['Height'])
+             height=processed_jtac_df['Height']
+             )
 
     ax2.barh(y='Red IDF',
              left=processed_red_df['rel_start'],
              width=processed_red_df['rel_length'],
              color=processed_red_df['Color'],
-             edgecolor='black')
+             edgecolor='black'
+             )
 
     fig.suptitle('Timeline', fontsize=30, fontweight='bold')
 
