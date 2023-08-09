@@ -86,11 +86,5 @@ if st.button(label='Generate Timeline', help='Must use "12:00:00" format.'):
              edgecolor='black')
 
     fig.suptitle('Timeline', fontsize=30, fontweight='bold')
-    #Save the Image-Timeline
-    #plt.savefig('Timeline.png')
-    #Open the image to pass to Streamlit
-    #image = Image.open('Timeline.png')
-    #Show the Image-Timeline
-    #st.image(image)
 
     st.pyplot(fig=fig)
