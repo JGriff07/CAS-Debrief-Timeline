@@ -42,7 +42,6 @@ def process_blue_timeline(df, start_time):
 
     #print(new_df.to_string())
     #new_df.reindex(index=new_df.index, columns=['Count'])
-    print(new_df.to_string())
     return new_df
 
 def process_jtac_timeline(df, start_time):
@@ -65,8 +64,9 @@ def process_jtac_timeline(df, start_time):
         x = pd.DataFrame(data=[
             {'Label': label, 'Asset': asset, 'Color': 'Black', 'Hatch': '', 'Height':0.8, 'Start': nom_time, 'End': nom_time},
             {'Label': label, 'Asset':sender, 'Color':'White', 'Hatch':'', 'Height':0.05, 'Start':nom_time,'End':pass_time},
-            {'Label': label, 'Asset':sender, 'Color':'Yellow', 'Hatch':'', 'Height':0.8, 'Start':pass_time, 'End':tally_time}
-            ], index=[index, index+1, index+2])
+            {'Label': label, 'Asset':sender, 'Color':'Yellow', 'Hatch':'', 'Height':0.8, 'Start':pass_time, 'End':tally_time},
+            {'Label': label, 'Asset': sender, 'Color': 'Green', 'Hatch': '/', 'Height': 0.8, 'Start': first_time, 'End': last_time}
+            ], index=[index, index+1, index+2, index+3])
         new_df = pd.concat([new_df, x])
 
     #Append Knock It Off to end of dataframe

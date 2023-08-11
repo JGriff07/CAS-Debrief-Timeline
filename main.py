@@ -39,23 +39,29 @@ blue_df = pd.DataFrame(
 edited_blue_df = st.data_editor(blue_df, num_rows="dynamic")
 #Process blue_df to create Aircraft Timeline label, start_time, and end_time
 processed_blue_df = pb.process_blue_timeline(edited_blue_df, edited_start_df)
-
 #Process blue_df to create JTAC Timeline label, start_time, and end_time
 processed_jtac_df = pb.process_jtac_timeline(edited_blue_df, edited_start_df)
 
-#The third input DataFrame for Red Timeline
-st.header("Input :red[Red Timeline] Here (IDF)")
-
-red_df = pd.DataFrame(
+#The third input DataFrame for Blue Arty Timeline, combine with Red IDF
+st.header("Input :blue[Blue Artillery] Here")
+arty_df = pd.DataFrame(
     [
-        {"Label": "1st IDF", "Start": "12:10:00", "End": "12:20:00"}
+        {"POO":"PAA.66", "Label":"Alpha", "Start":"12:00:00", "End":"12:00:00"}
     ]
 )
+edited_arty_df = st.data_editor(arty_df, num_rows="dynamic")
 
+#The fourth input DataFrame for Red IDF Timeline, combine with Blue Arty
+st.header("Input :red[Red Artillery] Here (IDF)")
+red_df = pd.DataFrame(
+    [
+        {"POO": "POO.1", "Start": "12:10:00", "End": "12:20:00"}
+    ]
+)
 edited_red_df = st.data_editor(red_df, num_rows="dynamic")
 
 #Process the red_df to label, start_time, and end_time
-processed_red_df = pr.process_red_timeline(edited_red_df, edited_start_df)
+processed_red_df = pr.process_red_timeline(edited_arty_df, edited_red_df, edited_start_df)
 
 if st.button(label='Generate Timeline', help='Must use "12:00:00" format.'):
     #Do all The MATPLOTLIB HERE
@@ -83,7 +89,7 @@ if st.button(label='Generate Timeline', help='Must use "12:00:00" format.'):
              height=processed_jtac_df['Height']
              )
 
-    ax2.barh(y='Red IDF',
+    ax2.barh(y=processed_red_df['POO'],
              left=processed_red_df['rel_start'],
              width=processed_red_df['rel_length'],
              color=processed_red_df['Color'],
